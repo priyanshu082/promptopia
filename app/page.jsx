@@ -1,3 +1,4 @@
+import feed from "../components/feed"
 
 const Home = () => {
   return (

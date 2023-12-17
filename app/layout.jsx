@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import Nav from '../components/Nav';
 
 export const metadata={
     title:"Promtopia",
@@ -13,6 +14,7 @@ const RootLayout = ({children}) => {
                 <div className='gradient'>
                 </div>
                 <main className='app'>
+                  <Nav/>
                     {children}
                 </main>
             </div>
