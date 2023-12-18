@@ -6,7 +6,7 @@ import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
 
 const Nav = () => {
 
-  const isUserLoggedIn = true;
+  const { data: session } = useSession();
 
   const [providers, setProviders] = useState(null)
 
@@ -33,7 +33,7 @@ const Nav = () => {
       {/* desktop  app view */}
 
       <div className="sm:flex hidden">
-        {isUserLoggedIn ?
+        {session?.user ?
           (<div className="flex gap-3 md:gap-5">
             <Link href="/create-prompt" className="rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center">
               Create post
@@ -43,7 +43,10 @@ const Nav = () => {
             </button>
 
             <Link href="/profile">
-              <Image src="/assests/images/logo.svg" width={37} height={37} className="rounded-full" alt="profile" />
+              <Image
+                src={session?.user.image}
+                width={37} height={37}
+                className="rounded-full" alt="profile" />
             </Link>
 
           </div>) :
@@ -65,45 +68,44 @@ const Nav = () => {
       {/* mobile naviagtion */}
 
       <div className="sm:hidden flex relative">
-        {isUserLoggedIn ? (
-            <div className="flex">
-              <Image
-                src="/assests/images/logo.svg"
-                width={37}
-                height={37}
-                className="rounded-full"
-                alt="profile"
-                onClick={() => setToggleDropDown(!toggleDropDown)} />
+        {session?.user ? (
+          <div className="flex">
+            <Image
+              src={session?.user.image}
+              width={37}
+              height={37}
+              className="rounded-full"
+              alt="profile"
+              onClick={() => setToggleDropDown(!toggleDropDown)} />
 
 
-              {toggleDropDown && (
-                <div className='dropdown'>
-                  <Link
-                    href="/profile"
-                    className="dropdown_link"
-                    onClick={() => setToggleDropDown(false)}>
-                    My Profile
-                  </Link>
-                  <Link
-                    href="/create-prompt"
-                    className="dropdown_link"
-                    onClick={() => setToggleDropDown(false)}>
-                    Create prompt
-                  </Link>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setToggleDropDown(false)
-                      signOut();
-                    }}
-                    className="black_btn"
-                  >
-                    Sign Out
-                  </button>
-                </div>
-              )}
-            </div>
-          )
+            {toggleDropDown && (
+              <div className='dropdown'>
+                <Link
+                  href="/profile"
+                  className="dropdown_link"
+                  onClick={() => setToggleDropDown(false)}>
+                  My Profile
+                </Link>
+                <Link
+                  href="/create-prompt"
+                  className="dropdown_link"
+                  onClick={() => setToggleDropDown(false)}>
+                  Create prompt
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setToggleDropDown(false)
+                    signOut();
+                  }}
+                  className="black_btn"
+                >
+                  Sign Out
+                </button>
+              </div>
+            )}
+          </div>)
           :
           (<>
             {providers &&
@@ -117,10 +119,7 @@ const Nav = () => {
                 </button>
               ))}
           </>)}
-
-
       </div>
-
     </nav>
   )
 }

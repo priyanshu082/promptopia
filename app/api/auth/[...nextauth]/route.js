@@ -3,7 +3,6 @@ import GoogleProvider from 'next-auth/providers/google'
 
 import User from "@/models/user";
 import { connectToDB } from "@/utils/database";
-import { findDOMNode } from "react-dom";
 
 const handler=nextAuth({
     providers:[
@@ -13,12 +12,14 @@ const handler=nextAuth({
         })
     ],
 
+    callbacks:{
+
     async session({session}){
         const sessionUser=await User.findOne({
             email:session.user.email,
         })
 
-        session.user.id=sesssionuser._id.toString();
+        session.user.id=sessionUser._id.toString();
 
         return session;
     },
@@ -28,7 +29,7 @@ const handler=nextAuth({
 
             //check if user already exits 
             const userExist=await User.findOne({
-                emial:profile.email
+                email:profile.email
             })  
             //if not ,create a user
             if(!userExist){
@@ -45,6 +46,7 @@ const handler=nextAuth({
             return false;
         }
     }
+}
 })
 
 export {handler as GET ,handler as POST}
