@@ -10,6 +10,14 @@ import tickIcon from '../public/assests/icon/tick.svg'
 const PromptCard = ({post ,handleTagClick,handleEdit,handleDelete}) => {
 
   const [copy, setCopy] = useState("")
+
+  const handleCopy=()=>{
+    setCopy(post.prompt)
+    navigator.clipboard.writeText(post.prompt)
+    setTimeout(() => {
+      setCopy("")
+    }, 3000);
+  }
   return (
     <div className='prompt_card'>
       <div className='flex justify-between items-start gap-5'>
@@ -32,7 +40,7 @@ const PromptCard = ({post ,handleTagClick,handleEdit,handleDelete}) => {
           </div>
 
         </div>
-        <div className='copy_btn' onClick={()=>{}}>
+        <div className='copy_btn' onClick={handleCopy}>
           <Image
           src={copy===post.prompt ? tickIcon : copyIcon }
           width={20}
@@ -43,7 +51,10 @@ const PromptCard = ({post ,handleTagClick,handleEdit,handleDelete}) => {
       <p className='my-4 font-satoshi text-gray-700 text-sm '>
         {post.prompt}
       </p>
-      <p className='font-inter text-sm blue_gradient cursor-pointer'>
+      <p className='font-inter text-sm blue_gradient cursor-pointer'
+          onClick={()=>handleClick && handleTagClick(
+            post.tag
+          )}>
         {post.tag}
       </p>
     </div>
