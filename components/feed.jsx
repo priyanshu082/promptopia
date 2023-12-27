@@ -34,6 +34,8 @@ const Feed = () => {
         } 
         fetchPost();
     },[])
+
+    
   return (
     <section className="feed">
     <form 
