@@ -1,13 +1,12 @@
 'use client'
 
-
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect,useCallback } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
 import Profile from '@/components/Profile'
-//import { DELETE } from '../api/prompt/[id]/route'
+
 
 const page = () => {
 
@@ -18,15 +17,20 @@ const page = () => {
   const [posts, setPosts] = useState([])
 
 
+  const fetchPosts = useCallback(async () => {
+    try {
+      const response = await fetch(`/api/users/${session?.user.id}/posts`);
+      const data = await response.json();
+      setPosts(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [session?.user.id]);
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await fetch(`/api/users/${session?.user.id}/posts`)
-      const data = await response.json()
-      setPosts(data)
-    }
-    if (session?.user.id) fetchPosts();
-  }, [])
+   
+    fetchPosts();
+  }, [fetchPosts]);
 
 
 
@@ -35,7 +39,7 @@ const page = () => {
   }
 
   const handleDelete = async (post) => {
-    const hasConfirmed = confirm("Are you sure!? ,You want to delete your prompt")
+    const hasConfirmed = confirm("Are you sure!? You want to delete your prompt");
 
     if (hasConfirmed) {
       try {
@@ -43,14 +47,17 @@ const page = () => {
           method: 'DELETE',
         });
 
-        const filteredPosts = posts.filter((p) => p._id !== post._id)
+        // Filter posts
+        const filteredPosts = posts.filter((item) => item._id !== post._id);
+        setPosts(filteredPosts);
 
-        setPosts(filteredPosts)
+        // Fetch posts again after updating the state
+        fetchPosts();
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
-  }
+  };
 
 
 

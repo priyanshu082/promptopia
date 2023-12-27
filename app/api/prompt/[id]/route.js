@@ -40,14 +40,18 @@ export const PATCH= async (request,{params})=>{
 }
 
 //delete (for deleting)
-export const DELETE=async(request,{params})=>{
+// Example DELETE logic
+export const DELETE = async (request, { params }) => {
     try {
-        await connectToDB()
-
-        await prompt.findByIdAndRemove(params.id)
-
-        return new Response("Deleted Succesfully",{status:200})
-    } catch (error) {
-        return new Response("Failed to delete Prompt",{status:500})
+      await connectToDB();
+  
+      // Find and remove document by ID
+      await Prompt.findByIdAndDelete(params.id)
+  
+      return new Response("Deleted Successfully", { status: 200 });
+    } catch (error){
+      console.error(error);
+      return new Response("Failed to delete Prompt", { status: 500 });
     }
-}
+  };
+  
