@@ -1,7 +1,5 @@
 'use client'
 import { useEffect, useState } from "react"
-import { useSession } from "next-auth/react"
-//import { useRouter } from "next/router"
 import Form from "@/components/Form"
 import { useRouter,useSearchParams } from "next/navigation"
 
@@ -38,7 +36,7 @@ const EditPrompt = () => {
      if(!promptId) return alert ("Prompt Id is not found")
 
      try{
-       //const session = await getSession();
+       
        const res=await fetch(`/api/prompt/${promptId}`,{
          method:'PATCH',
          body:JSON.stringify({

@@ -1,7 +1,6 @@
 'use client'
 import { useState } from "react"
 import { useSession } from "next-auth/react"
-//import { useRouter } from "next/router"
 import Form from "@/components/Form"
 import { useRouter } from "next/navigation"
 
@@ -34,7 +33,6 @@ const CreatePrompt = () => {
       if(res.ok){
         router.push('/')
       }
-
     } catch(error){
       console.log(error)
     } finally{
