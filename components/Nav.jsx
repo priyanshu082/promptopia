@@ -35,7 +35,7 @@ const Nav = () => {
       <div className="sm:flex hidden">
         {session?.user ?
           (<div className="flex gap-3 md:gap-5">
-            <Link href="/create-prompt" className="rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center">
+            <Link href="/create-prompt" className="rounded-full border border-black bg-orange-600 py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center">
               Create post
             </Link>
             <button type="button" onClick={signOut} className="outline_btn">

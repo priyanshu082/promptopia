@@ -2,20 +2,23 @@
 
 import { useState,useEffect } from "react"
 import PromptCard from "./PromptCard"
+import { HoverEffect } from "./ui/card-hover-effect"
 
-const PromptCardList=({data,handleTagClick})=>{
-    return (
-        <div className="mt-16 prompt_layout">
-            {data.map((post)=>(
-                <PromptCard
-                key={post._id}
-                post={post}
-                handleTagClick={handleTagClick}
-                />
-            ))}
-        </div>
-    )
-}
+
+// const PromptCardList=({data,handleTagClick})=>{
+//     console.log(data)
+//     return (
+//         <div className="mt-16 prompt_layout">
+//             {data.map((post)=>(
+//                 <PromptCard
+//                 key={post._id}
+//                 post={post}
+//                 handleTagClick={handleTagClick}
+//                 />
+//             ))}
+//         </div>
+//     )
+// }
 
 const Feed = () => {
 
@@ -50,11 +53,8 @@ const Feed = () => {
          />
     </form>
 
-    <PromptCardList
-    data={posts}
-    handleTagClick={()=>{
-        
-    }}
+    <HoverEffect
+    items={posts}
     />
     </section>
   )
