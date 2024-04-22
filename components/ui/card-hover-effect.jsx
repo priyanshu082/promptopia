@@ -2,6 +2,7 @@ import { cn } from "@/utils/cn";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
+import { Meteors } from "./Meteors";
 
 export const HoverEffect = ({
   items,
@@ -9,6 +10,7 @@ export const HoverEffect = ({
 }) => {
 
   let [hoveredIndex, setHoveredIndex] = useState(null);
+  
 
   return (
     <div
@@ -47,6 +49,7 @@ export const HoverEffect = ({
             <div className="mt-[5vw]">
             <CardTitle>{item.tag}</CardTitle>
             </div>
+  
             
           </Card>
         </Link>

@@ -59,9 +59,9 @@
   content: "";
   width: 100%;
   height: 100%;
-  filter: blur(80px) saturate(100%);
+  filter: blur(180px) saturate(100%);
   top: 80px;
-  opacity: 0.5;
+  opacity: 0.1;
   
 }
 
@@ -90,7 +90,7 @@
 }
 
 .orange_gradient {
-  @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-amber-400 via-orange-400 to-orange-400 bg-clip-text text-transparent;
 }
 
 .green_gradient {
