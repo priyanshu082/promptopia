@@ -6,7 +6,7 @@ export const Meteors = ({
   number,
   className,
 }) => {
-  const meteors = new Array(number || 30).fill(true);
+  const meteors = new Array(number || 50).fill(true);
   return (
     <>
       {meteors.map((el, idx) => (
@@ -21,7 +21,7 @@ export const Meteors = ({
             top: 10,
             left: Math.floor(Math.random() * (40 - -40) + -50) + "vw",
             animationDelay: Math.random() * (0.2 ) + 0.2 + "s",
-            animationDuration: Math.floor(Math.random() * (50 - 2) + 2) + "s",
+            animationDuration: Math.floor(Math.random() * (20 - 2) + 2) + "s",
           }}
         ></span>
       ))}

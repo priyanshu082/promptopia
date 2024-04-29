@@ -83,14 +83,14 @@ export const TextRevealCard = ({
                   clipPath: `inset(0 ${100 - widthPercentage}% 0 0)`,
                 }
           }
-          transition={isMouseOver ? { duration: 0 } : { duration: 0.4 }}
+          transition={isMouseOver ? { duration: 0 } : { duration: 0.8 }}
           className="absolute bg-transparent flex justify-center items-center z-20 will-change-transform"
         >
           <p
             style={{
               textShadow: "4px 4px 15px rgba(0,0,0,0.5)",
             }}
-            className="text-base sm:text-[3rem] py-8 font-bold orange_gradient bg-clip-text text-transparent from-white to-neutral-300"
+            className="text-base sm:text-[3rem] py-8 font-bold text-zinc-300 bg-clip-text text-transparent from-white to-neutral-300"
           >
             {revealText}
           </p>
@@ -106,7 +106,7 @@ export const TextRevealCard = ({
         ></motion.div>
 
         <div className=" overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,white,transparent)]">
-          <p className="text-base sm:text-[3rem] py-6 font-bold bg-clip-text text-transparent bg-[#d2d0d0]">
+          <p className="text-base sm:text-[3rem] py-6 font-bold bg-clip-text text-transparent bg-orange-500">
             {text}
           </p>
           <MemoizedStars />

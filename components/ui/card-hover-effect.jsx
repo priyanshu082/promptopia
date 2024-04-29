@@ -15,9 +15,9 @@ export const HoverEffect = ({
 
   let [hoveredIndex, setHoveredIndex] = useState(null);
   const [copy, setCopy] = useState("")
-  const handleCopy=()=>{
-    setCopy(post.prompt)
-    navigator.clipboard.writeText(post.prompt)
+  const handleCopy=(item)=>{
+    setCopy(item.prompt)
+    navigator.clipboard.writeText(item.prompt)
     setTimeout(() => {
       setCopy("")
     }, 3000);
@@ -79,7 +79,7 @@ export const HoverEffect = ({
 
         </div>
         <div className='copy_btn' 
-        onClick={handleCopy}
+        onClick={()=>handleCopy(item)}
         >
           <Image
           src={copy===item.prompt ? tickIcon : copyIcon }
@@ -106,7 +106,7 @@ export const Card = ({
   return (
     <div
       className={cn(
-        "rounded-2xl min-h-[20vw] max-h-[20vw] min-w-[25vw] max-w-[25vw]overflow-hidden bg-black hover:bg-black border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 flex flex-col justify-between  relative z-20",
+        "rounded-2xl min-h-[20vw] max-h-[20vw] min-w-[25vw] max-w-[25vw] overflow-hidden bg-black hover:bg-black border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 flex flex-col justify-between relative z-20",
         className
       )}
     >
