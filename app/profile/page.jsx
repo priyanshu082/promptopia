@@ -34,7 +34,8 @@ const page = () => {
 
 
   const handleEdit = (post) => {
-    router.push(`/update-prompt?id=${post._id}`)
+    // router.push(`/update-prompt/${post}`)
+    console.log(post)
   }
 
   const handleDelete = async (post) => {
@@ -42,7 +43,7 @@ const page = () => {
 
     if (hasConfirmed) {
       try {
-        await fetch(`/api/prompt/${post._id.toString()}`, {
+        await fetch(`/api/prompt/${post}`, {
           method: 'DELETE',
         });
 

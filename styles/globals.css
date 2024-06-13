@@ -114,7 +114,7 @@
 
 @layer utilities {
   .glassmorphism {
-    @apply rounded-xl border border-gray-200 bg-white/20 backdrop-blur p-5;
+    @apply rounded-xl backdrop-blur bg-gradient-to-r from-violet-700 to-cyan-600 p-5;
     box-shadow: inset -10px -50px 94px 0 rgba(199, 199, 199, 0.2);
   }
 }

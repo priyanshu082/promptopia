@@ -3,11 +3,11 @@ import { useEffect, useState } from "react"
 import Form from "@/components/Form"
 import { useRouter,useSearchParams } from "next/navigation"
 
-const EditPrompt = () => {
+const EditPrompt = ({params}) => {
 
   const router=useRouter();
   const searchParams=useSearchParams();
-  const promptId=searchParams.get('id')
+  const promptId=params.id
 
   //const {data: session}=useSession();
 
@@ -16,6 +16,8 @@ const EditPrompt = () => {
     prompt:'',
     tag:'',
   })
+
+  console.log(params.id)
 
   useEffect(()=>{
     const getPromptDetails=async()=>{
@@ -29,7 +31,7 @@ const EditPrompt = () => {
     if(promptId) getPromptDetails();
   },[promptId])
 
-   const updatePrompt=async (e)=>{
+   const updatePrompt= async (e)=>{
      e.preventDefault();
      setSubmitting(true);
 

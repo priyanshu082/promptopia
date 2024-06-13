@@ -14,6 +14,7 @@ const RootLayout = ({children}) => {
        <body className=''>
         <Provider>
             <div className='overflow-clip  bg-zinc-950'>
+           
                 <div className='gradient'>
                 </div>
                 <main className='flex flex-col justify-center items-center'>

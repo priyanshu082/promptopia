@@ -5,16 +5,24 @@ import Image from 'next/image'
 import { useState } from "react";
 import copyIcon from '../../public/assests/icon/copy.svg'
 import tickIcon from '../../public/assests/icon/tick.svg'
-import { Meteors } from "./Meteors";
-import { Tilt } from "react-tilt";
+import { useSession } from 'next-auth/react'
+import { usePathname,useRouter } from 'next/navigation'
+
 
 export const HoverEffect = ({
   items,
   className,
+  handleDelete,
+  handleEdit
 }) => {
 
   let [hoveredIndex, setHoveredIndex] = useState(null);
   const [copy, setCopy] = useState("")
+
+  const {data:session}=useSession();
+  const pathName=usePathname();
+  const router=useRouter
+
   const handleCopy=(item)=>{
     setCopy(item.prompt)
     navigator.clipboard.writeText(item.prompt)
@@ -22,7 +30,9 @@ export const HoverEffect = ({
       setCopy("")
     }, 3000);
   }
-  
+
+
+
 
   return (
     <div
@@ -92,6 +102,18 @@ export const HoverEffect = ({
             <div className="mt-[2vw]">
             <CardTitle>{item.tag}</CardTitle>
             </div>
+            {session?.user.id ===item.creator?._id && pathName==='/profile' && (
+          <div className='mt-5 flex-center gap-4 border-t-[1px] border-gray-600 pt-3'>
+            <Link href={`/update-prompt/${item._id}`} className='font-inter bg-white text-sm green_gradient cursor-pointer'>
+                Edit
+            </Link>
+            <p className='font-inter text-sm orange_gradient cursor-pointer'
+            onClick={()=>handleDelete(item._id)}
+            >
+                Delete
+            </p>
+          </div>
+      )} 
           </Card>
         </Link>
       ))}

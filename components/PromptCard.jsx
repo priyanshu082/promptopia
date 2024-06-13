@@ -22,6 +22,7 @@ const PromptCard = ({post ,handleTagClick,handleEdit,handleDelete}) => {
       setCopy("")
     }, 3000);
   }
+  
   return (
     <div className='flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-gray-200 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter md:w-[360px] w-full h-fit'>
       <div className='flex justify-between items-start gap-5'>
