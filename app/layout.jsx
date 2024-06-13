@@ -3,6 +3,7 @@ import Nav from '../components/Nav';
 import Provider from '@/components/Provider';
 import Footer from '@/components/Footer';
 import { Meteors } from '@/components/ui/Meteors';
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata={
     title:"Promtopia",
@@ -20,7 +21,8 @@ const RootLayout = ({children}) => {
                 </div>
                   <Meteors/>
                   <Nav/>
-                    {children}
+                    {children}  
+                    <Analytics />
                   <Footer/>
                 </main>
             </div>
