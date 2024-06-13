@@ -13,13 +13,12 @@ const RootLayout = ({children}) => {
     <html lang="en">
        <body className=''>
         <Provider>
-            <div className=' min-h-[200vh] flex  bg-zinc-950'>
-                <div className=' gradient'>
+            <div className='  bg-zinc-950'>
+                <div className='gradient'>
                 </div>
-                <main className='app'>
+                <main className='flex flex-col justify-center items-center'>
                   <Nav/>
                     {children}
-                    <Meteors />
                 </main>
             </div>
             </Provider>

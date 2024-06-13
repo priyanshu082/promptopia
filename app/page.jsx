@@ -1,16 +1,17 @@
 import Feed from "@/components/Feed"
 import { TextRevealCard } from "@/components/ui/Reveal"
+import { Meteors } from "@/components/ui/Meteors"
 
 const Home = () => {
   return (
-    <section className=" w-full flex-center flex-col">
+    <section className=" bg-pink-200 w-[100vw] overflow-clip flex-center flex-col ">
+
+          <Meteors />
+          <div className="">
+          <TextRevealCard revealText="Discover & share" text="Discover & share"/> 
+        <TextRevealCard revealText="AI-Powered Prompts" text="AI-Powered Prompts"/>  
+          </div>
         
-        <TextRevealCard
-        revealText="Discover & share" 
-        text="Discover & share"/> 
-        <TextRevealCard
-        revealText="AI-Powered Prompts" 
-        text="AI-Powered Prompts"/> 
         
       <Feed/>
     </section>

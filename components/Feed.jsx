@@ -1,7 +1,6 @@
 'use client'
 
 import { useState,useEffect } from "react"
-import PromptCard from "./PromptCard"
 import { HoverEffect } from "./ui/card-hover-effect"
 
 
@@ -41,7 +40,7 @@ const Feed = () => {
     
   return (
     <section className="feed">
-    <form 
+    {/* <form 
     className="relative w-full flex-center">
         <input    
          type='text'
@@ -51,11 +50,9 @@ const Feed = () => {
          required
          className="search_input peer"
          />
-    </form>
+    </form> */}
 
-    <HoverEffect
-    items={posts}
-    />
+    <HoverEffect items={posts}/>
     </section>
   )
 }

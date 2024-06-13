@@ -84,7 +84,7 @@ export const TextRevealCard = ({
                 }
           }
           transition={isMouseOver ? { duration: 0 } : { duration: 0.8 }}
-          className="absolute bg-transparent flex justify-center items-center z-20 will-change-transform"
+          className="absolute bg-yellow-400 flex justify-center items-center z-20 will-change-transform"
         >
           <p
             style={{

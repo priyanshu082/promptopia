@@ -27,7 +27,7 @@ export const HoverEffect = ({
   return (
     <div
       className={cn(
-        "flex flex-row h-full w-[80vw] mt-[3vw] flex-wrap justify-center items-center",
+        "flex flex-row h-full w-[80vw]  mt-[3vw] flex-wrap justify-center items-center",
         className
       )}
     >
@@ -116,6 +116,7 @@ export const Card = ({
     </div>
   );
 };
+
 export const CardTitle = ({
   className,
   children,

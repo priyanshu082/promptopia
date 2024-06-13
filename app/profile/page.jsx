@@ -28,7 +28,6 @@ const page = () => {
   }, [session?.user.id]);
 
   useEffect(() => {
-   
     fetchPosts();
   }, [fetchPosts]);
 
