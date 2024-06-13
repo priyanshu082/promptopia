@@ -23,19 +23,19 @@ const Feed = () => {
 
     const [searchText, setSearchText] = useState('')
     const [posts, setPosts] = useState([]) 
-    const [twoSec,setTwoSec]=useState()
+    // const [twoSec,setTwoSec]=useState()
 
-    const updateTwoSec=()=>{
-      const currentTime=new Date()
-      setTwoSec(currentTime)
-    }
+    // const updateTwoSec=()=>{
+    //   const currentTime=new Date()
+    //   setTwoSec(currentTime)
+    // }
  
-    useEffect(()=>{
-      const intervalid=setInterval(() => {
-        updateTwoSec()
-      }, 3000);
-      return () => clearInterval(intervalid);
-    })
+    // useEffect(()=>{
+    //   const intervalid=setInterval(() => {
+    //     updateTwoSec()
+    //   }, 3000);
+    //   return () => clearInterval(intervalid);
+    // })
   
 
     useEffect(()=>{
@@ -46,7 +46,7 @@ const Feed = () => {
             setPosts(data)
         } 
         fetchPost();
-    },[twoSec])
+    },[])
 
     
   return (
