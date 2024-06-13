@@ -39,7 +39,7 @@ const Feed = () => {
 
     
   return (
-    <section className="feed">
+    <section className="mt-16 mx-auto w-full flex justify-start items-center flex-col gap-2 min-h-[800px]">
     {/* <form 
     className="relative w-full flex-center">
         <input    

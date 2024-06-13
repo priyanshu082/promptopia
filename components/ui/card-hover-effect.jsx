@@ -27,7 +27,7 @@ export const HoverEffect = ({
   return (
     <div
       className={cn(
-        "flex flex-row h-full w-[80vw]  mt-[3vw] flex-wrap justify-center items-center",
+        "flex flex-row h-full w-[90vw]  mt-[3vw] flex-wrap justify-center items-center",
         className
       )}
     >
@@ -68,7 +68,7 @@ export const HoverEffect = ({
           className='rounded-full object-contain'
           />
 
-          <div className='felx lfex-col'>
+          <div className='flex flex-col'>
             <h3 className='font-satoshi font-semibold text-gray-200'>
               {item.creator?.username}
             </h3>
@@ -106,7 +106,7 @@ export const Card = ({
   return (
     <div
       className={cn(
-        "rounded-2xl min-h-[20vw] max-h-[20vw] min-w-[25vw] max-w-[25vw] overflow-hidden bg-black hover:bg-black border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 flex flex-col justify-between relative z-20",
+        "rounded-2xl h-fit w-fit min-w-[400px] min-h-[250px] overflow-hidden bg-black hover:bg-black border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 flex flex-col justify-between relative z-20",
         className
       )}
     >

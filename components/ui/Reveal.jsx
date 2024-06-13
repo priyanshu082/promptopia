@@ -84,18 +84,20 @@ export const TextRevealCard = ({
                 }
           }
           transition={isMouseOver ? { duration: 0 } : { duration: 0.8 }}
-          className="absolute bg-yellow-400 flex justify-center items-center z-20 will-change-transform"
+          className="absolute  flex justify-center items-center z-20 will-change-transform"
         >
           <p
             style={{
               textShadow: "4px 4px 15px rgba(0,0,0,0.5)",
             }}
-            className="text-base sm:text-[3rem] py-8 font-bold text-zinc-300 bg-clip-text text-transparent from-white to-neutral-300"
+            className="text-base sm:text-[7vw] text-[9vw] md:text-[5vw] py-8 font-bold text-zinc-300 bg-clip-text text-transparent from-white to-neutral-300"
           >
             {revealText}
           </p>
+
         </motion.div>
-        <motion.div
+
+         <motion.div
           animate={{
             left: `${widthPercentage}%`,
             rotate: `${rotateDeg}deg`,
@@ -103,15 +105,17 @@ export const TextRevealCard = ({
           }}
           transition={isMouseOver ? { duration: 0 } : { duration: 0.4 }}
           className=" w-[8px] from-transparent via-neutral-800 to-transparent absolute z-50 will-change-transform"
-        ></motion.div>
+        ></motion.div> 
 
-        <div className=" overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,white,transparent)]">
-          <p className="text-base sm:text-[3rem] py-6 font-bold bg-clip-text text-transparent bg-orange-500">
+        <div className="  overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,white,transparent)]">
+          <p className="text-base sm:text-[7vw] text-[9vw] md:text-[5vw] py-6 font-bold bg-clip-text text-transparent bg-orange-500">
             {text}
           </p>
           <MemoizedStars />
         </div>
+
       </div>
+
     </div>
   );
 };
@@ -137,7 +141,7 @@ export const TextRevealCardDescription = ({
 };
 
 const Stars = () => {
-  const randomMove = () => Math.random() * 4 - 2;
+  const randomMove = () => Math.random() * 3 - 2;
   const randomOpacity = () => Math.random();
   const random = () => Math.random();
   return (
