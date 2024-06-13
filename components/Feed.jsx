@@ -22,20 +22,31 @@ import { HoverEffect } from "./ui/card-hover-effect"
 const Feed = () => {
 
     const [searchText, setSearchText] = useState('')
-    const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState([]) 
+    const [twoSec,setTwoSec]=useState()
 
-    const handleSearchChange=(e)=>{
-
+    const updateTwoSec=()=>{
+      const currentTime=new Date()
+      setTwoSec(currentTime)
     }
+ 
+    useEffect(()=>{
+      const intervalid=setInterval(() => {
+        updateTwoSec()
+      }, 3000);
+      return () => clearInterval(intervalid);
+    })
+  
 
     useEffect(()=>{
         const fetchPost=async()=>{
             const response=await fetch('/api/prompt')
             const data=await response.json()
+            console.log(data)
             setPosts(data)
         } 
         fetchPost();
-    },[])
+    },[twoSec])
 
     
   return (
