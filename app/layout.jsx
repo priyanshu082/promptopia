@@ -1,7 +1,7 @@
 import '../styles/globals.css';
 import Nav from '../components/Nav';
 import Provider from '@/components/Provider';
-import { Meteors } from '@/components/ui/Meteors';
+import Footer from '@/components/Footer';
 
 export const metadata={
     title:"Promtopia",
@@ -20,6 +20,7 @@ const RootLayout = ({children}) => {
                 <main className='flex flex-col justify-center items-center'>
                   <Nav/>
                     {children}
+                  <Footer/>
                 </main>
             </div>
             </Provider>
