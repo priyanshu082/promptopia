@@ -26,17 +26,39 @@ const Feed = () => {
    
   
 
+    // useEffect(() => {
+    //   const fetchPost = async () => {
+    //     const response = await fetch(`/api/prompt?t=${Date.now()}`)
+    //     const data = await response.json()
+    //     const reversedData = [...data].reverse()
+    //     console.log(reversedData)        
+    //     setPosts(reversedData)
+    //   }
+    
+    //   fetchPost();
+    // }, [])
+
     useEffect(() => {
       const fetchPost = async () => {
-          const response = await fetch('/api/prompt')
+        try {
+          const response = await fetch(`/api/prompt?t=${Date.now()}`, {
+            headers: {
+              'Cache-Control': 'no-cache',
+              'Pragma': 'no-cache',
+              'Expires': '0',
+            }
+          });
           const data = await response.json()
           const reversedData = [...data].reverse()
           console.log(reversedData)        
           setPosts(reversedData)
+        } catch (error) {
+          console.error('Fetch error:', error);
+        }
       }
-  
+    
       fetchPost();
-  }, [])
+    }, [])
 
     
   return (
