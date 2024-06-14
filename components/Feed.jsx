@@ -23,30 +23,20 @@ const Feed = () => {
 
     const [searchText, setSearchText] = useState('')
     const [posts, setPosts] = useState([]) 
-    // const [twoSec,setTwoSec]=useState()
-
-    // const updateTwoSec=()=>{
-    //   const currentTime=new Date()
-    //   setTwoSec(currentTime)
-    // }
- 
-    // useEffect(()=>{
-    //   const intervalid=setInterval(() => {
-    //     updateTwoSec()
-    //   }, 3000);
-    //   return () => clearInterval(intervalid);
-    // })
+   
   
 
-    useEffect(()=>{
-        const fetchPost=async()=>{
-            const response=await fetch('/api/prompt')
-            const data=await response.json()
-            console.log(data)
-            setPosts(data)
-        } 
-        fetchPost();
-    },[])
+    useEffect(() => {
+      const fetchPost = async () => {
+          const response = await fetch('/api/prompt')
+          const data = await response.json()
+          const reversedData = [...data].reverse()
+          console.log(reversedData)        
+          setPosts(reversedData)
+      }
+  
+      fetchPost();
+  }, [])
 
     
   return (
