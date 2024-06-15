@@ -23,25 +23,11 @@ const Feed = () => {
 
     const [searchText, setSearchText] = useState('')
     const [posts, setPosts] = useState([]) 
-   
-  
-
-    // useEffect(() => {
-    //   const fetchPost = async () => {
-    //     const response = await fetch(`/api/prompt?t=${Date.now()}`)
-    //     const data = await response.json()
-    //     const reversedData = [...data].reverse()
-    //     console.log(reversedData)        
-    //     setPosts(reversedData)
-    //   }
-    
-    //   fetchPost();
-    // }, [])
 
     useEffect(() => {
       const fetchPost = async () => {
         try {
-          const response = await fetch(`/api/prompt?t=${Date.now()}`, {
+          const response = await fetch(`/api/prompt`, {
             headers: {
               'Cache-Control': 'no-cache',
               'Pragma': 'no-cache',
@@ -50,7 +36,7 @@ const Feed = () => {
           });
           const data = await response.json()
           const reversedData = [...data].reverse()
-          console.log(reversedData)        
+          if(response){console.log(reversedData)}     
           setPosts(reversedData)
         } catch (error) {
           console.error('Fetch error:', error);
