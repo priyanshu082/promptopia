@@ -1,4 +1,3 @@
-'use client'
 import Feed from "@/components/Feed";
 import { TextRevealCard } from "@/components/ui/Reveal";
 import { Meteors } from "@/components/ui/Meteors";
