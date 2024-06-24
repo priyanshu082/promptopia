@@ -14,6 +14,7 @@ const Feed = () => {
       const fetchPost = async () => {
         try {
           const response = await axios.get(`/api/prompt`)
+          console.log(response)
           const data = response.data
           const reversedData = [...data].reverse()
           if(response){console.log(reversedData)}     
@@ -22,7 +23,6 @@ const Feed = () => {
           console.error('Fetch error:', error);
         }
       }
-    
       fetchPost();
     }, [])
 
