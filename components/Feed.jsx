@@ -2,22 +2,8 @@
 
 import { useState,useEffect } from "react"
 import { HoverEffect } from "./ui/card-hover-effect"
+import axios from "axios"
 
-
-// const PromptCardList=({data,handleTagClick})=>{
-//     console.log(data)
-//     return (
-//         <div className="mt-16 prompt_layout">
-//             {data.map((post)=>(
-//                 <PromptCard
-//                 key={post._id}
-//                 post={post}
-//                 handleTagClick={handleTagClick}
-//                 />
-//             ))}
-//         </div>
-//     )
-// }
 
 const Feed = () => {
 
@@ -27,14 +13,8 @@ const Feed = () => {
     useEffect(() => {
       const fetchPost = async () => {
         try {
-          const response = await fetch(`/api/prompt`, {
-            headers: {
-              'Cache-Control': 'no-cache',
-              'Pragma': 'no-cache',
-              'Expires': '0',
-            }
-          });
-          const data = await response.json()
+          const response = await axios.get(`/api/prompt`)
+          const data = response.data
           const reversedData = [...data].reverse()
           if(response){console.log(reversedData)}     
           setPosts(reversedData)
