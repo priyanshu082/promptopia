@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { useState } from "react";
 import copyIcon from '../../public/assests/icon/copy.svg'
 import tickIcon from '../../public/assests/icon/tick.svg'
-import { useSession } from 'next-auth/react'
+import { useUser } from "@clerk/nextjs";
 import { usePathname,useRouter } from 'next/navigation'
 
 
@@ -14,13 +14,12 @@ export const HoverEffect = ({
   items,
   className,
   handleDelete,
-  handleEdit
 }) => {
 
   let [hoveredIndex, setHoveredIndex] = useState(null);
   const [copy, setCopy] = useState("")
-
-  const {data:session}=useSession();
+  const { user } = useUser()
+  
   const pathName=usePathname();
   const router=useRouter
 
@@ -45,7 +44,7 @@ export const HoverEffect = ({
       {items.map((item, idx) => (
         <Link
           href={item?.link || ".."}
-          key={item?.link}
+          key={item?._id}
           className="relative group block p-2 "
           onMouseEnter={() => setHoveredIndex(idx)}
           onMouseLeave={() => setHoveredIndex(null)}
@@ -71,8 +70,8 @@ export const HoverEffect = ({
           <Card >
           <div className='flex justify-between items-start '>
         <div className='flex-1 flex justify-start items-center cursor-pointer gap-3'>
-          <Image
-          src={item.creator?.image}
+          <img
+          src={item.image}
           alt="user_image"
           width={50}
           height={50}
@@ -81,10 +80,10 @@ export const HoverEffect = ({
 
           <div className='flex flex-col'>
             <h3 className='font-satoshi font-semibold text-gray-200'>
-              {item.creator?.username}
+              {item.name}
             </h3>
             <p className='font-inter text-sm text-gray-400'>
-              {item.creator?.email}
+              {item.email}
             </p>
           </div>
 
@@ -103,7 +102,7 @@ export const HoverEffect = ({
             <div className="mt-[2vw]">
             <CardTitle>{item.tag}</CardTitle>
             </div>
-            {session?.user.id ===item.creator?._id && pathName==='/profile' && (
+            {user?.emailAddresses[0]?.emailAddress ===item?.email && pathName==='/profile' && (
           <div className='mt-5 flex-center gap-4 border-t-[1px] border-gray-600 pt-3'>
             <Link href={`/update-prompt/${item._id}`} className='font-inter bg-white text-sm green_gradient cursor-pointer'>
                 Edit

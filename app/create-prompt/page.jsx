@@ -1,14 +1,14 @@
 'use client'
 import { useState } from "react"
-import { useSession } from "next-auth/react"
+import { useUser } from "@clerk/nextjs";
 import Form from "@/components/Form"
 import { useRouter } from "next/navigation"
 
 const CreatePrompt = () => {
 
   const router=useRouter();
-  const {data: session}=useSession();
 
+  const { user } = useUser()
   const [submitting,setSubmitting]=useState(false)
   const [post,setPost]=useState({
     prompt:'',
@@ -25,8 +25,10 @@ const CreatePrompt = () => {
         method:'POST',
         body:JSON.stringify({
           prompt:post.prompt,
-          userId:session?.user.id,
-          tag:post.tag
+          email:user?.emailAddresses[0]?.emailAddress,
+          tag:post.tag,
+          image:user.imageUrl,
+          name:user?.fullName
         })
       })
 

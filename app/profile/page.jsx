@@ -1,42 +1,32 @@
 'use client'
-
 import React from 'react'
 import { useState, useEffect,useCallback } from 'react'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
-
+import { useUser } from "@clerk/nextjs";
 import Profile from '@/components/Profile'
 
 
 const page = () => {
 
-  const router = useRouter();
-
-  const { data: session } = useSession();
+  const { user } = useUser()
 
   const [posts, setPosts] = useState([])
 
+  console.log(user?.emailAddresses[0]?.emailAddress)
 
   const fetchPosts = useCallback(async () => {
     try {
-      const response = await fetch(`/api/users/${session?.user.id}/posts`);
+      const response = await fetch(`/api/users/${user?.emailAddresses[0]?.emailAddress}/posts`);
       const data = await response.json();
       setPosts(data);
     } catch (error) {
       console.error(error);
     }
-  }, [session?.user.id]);
+  }, [user]);
 
   useEffect(() => {
     fetchPosts();
   }, [fetchPosts]);
 
-
-
-  const handleEdit = (post) => {
-    // router.push(`/update-prompt/${post}`)
-    console.log(post)
-  }
 
   const handleDelete = async (post) => {
     const hasConfirmed = confirm("Are you sure!? You want to delete your prompt");
@@ -63,10 +53,9 @@ const page = () => {
 
   return (
     <Profile
-      name="My"
+      name={user?.fullName}
       desc="Welcome to my profile"
       data={posts}
-      handleEdit={handleEdit}
       handleDelete={handleDelete}
     />
   )
